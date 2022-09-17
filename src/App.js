@@ -1,10 +1,10 @@
-import logo from './logo.svg';
 import './App.css';
+import MetaData from './store/MetaData';
 
 function App() {
   return (
     <div>
-
+      <MetaData />
     </div>
   );
 }
