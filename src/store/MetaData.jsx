@@ -19,7 +19,6 @@ const MetaData = () => {
     const end = page._currentValue[pageNumber + 1]
 
     if (start[0] === end[0]) {
-
       const startPrime = sura._currentValue[start[0]][0] + start[1]
       const endPrime = sura._currentValue[end[0]][0] + end[1]
 
@@ -29,8 +28,17 @@ const MetaData = () => {
       // console.log(`start: ${start}`, `end: ${end}`, `startPrime: ${startPrime}`, `endPrime: ${endPrime}`);
       setPageContent(pages)
     }
-    else {
+    else if (start[0] !== end[0] && end[1] !== 1) {
+      const startPrime = sura._currentValue[start[0]][0] + start[1] - 1
+      const endOfPage = sura._currentValue[end[0]][0] + end[1] - 1
+      // console.log(emla[endOfPage]);
+      for (let i = startPrime; i < endOfPage; i++) {
+        pages.push(emla[i])
+      }
+      setPageContent(pages)
 
+    }
+    else if (start[0] !== end[0]) {
       const startPrime = sura._currentValue[start[0]][0] + start[1]
       const endOfSura = sura._currentValue[start[0]][1] - start[1]
 
@@ -39,6 +47,7 @@ const MetaData = () => {
       }
       setPageContent(pages)
     }
+
   }
 
 
@@ -46,6 +55,7 @@ const MetaData = () => {
   return (
     <div>
       <input
+        autoFocus
         type='number'
         onChange={search}
       />
